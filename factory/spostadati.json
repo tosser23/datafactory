@@ -1,0 +1,9 @@
+{
+	"name": "spostadati",
+	"location": "westeurope",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "1a258bda-cbcc-49af-a516-7cbbec19e77f",
+		"tenantId": "1cb51f3b-1766-40e7-b70d-8cff6172e638"
+	}
+}
