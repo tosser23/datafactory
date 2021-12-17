@@ -1,0 +1,441 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "spostadati"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
+		"AzureBlobStorage2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage2'"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureBlobStorage1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage2')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureBlobStorage2_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DestinationDataset_dml')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "billing"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SourceDataset_dml')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "daily/consipBT",
+						"container": "costbtcontainer"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "billingAccountName",
+						"type": "String"
+					},
+					{
+						"name": "partnerName",
+						"type": "String"
+					},
+					{
+						"name": "resellerName",
+						"type": "String"
+					},
+					{
+						"name": "resellerMpnId",
+						"type": "String"
+					},
+					{
+						"name": "customerTenantId",
+						"type": "String"
+					},
+					{
+						"name": "customerName",
+						"type": "String"
+					},
+					{
+						"name": "costCenter",
+						"type": "String"
+					},
+					{
+						"name": "billingPeriodEndDate",
+						"type": "String"
+					},
+					{
+						"name": "billingPeriodStartDate",
+						"type": "String"
+					},
+					{
+						"name": "servicePeriodEndDate",
+						"type": "String"
+					},
+					{
+						"name": "servicePeriodStartDate",
+						"type": "String"
+					},
+					{
+						"name": "date",
+						"type": "String"
+					},
+					{
+						"name": "serviceFamily",
+						"type": "String"
+					},
+					{
+						"name": "productOrderId",
+						"type": "String"
+					},
+					{
+						"name": "productOrderName",
+						"type": "String"
+					},
+					{
+						"name": "consumedService",
+						"type": "String"
+					},
+					{
+						"name": "meterId",
+						"type": "String"
+					},
+					{
+						"name": "meterName",
+						"type": "String"
+					},
+					{
+						"name": "meterCategory",
+						"type": "String"
+					},
+					{
+						"name": "meterSubCategory",
+						"type": "String"
+					},
+					{
+						"name": "meterRegion",
+						"type": "String"
+					},
+					{
+						"name": "ProductId",
+						"type": "String"
+					},
+					{
+						"name": "ProductName",
+						"type": "String"
+					},
+					{
+						"name": "SubscriptionId",
+						"type": "String"
+					},
+					{
+						"name": "subscriptionName",
+						"type": "String"
+					},
+					{
+						"name": "publisherType",
+						"type": "String"
+					},
+					{
+						"name": "publisherId",
+						"type": "String"
+					},
+					{
+						"name": "publisherName",
+						"type": "String"
+					},
+					{
+						"name": "resourceGroupName",
+						"type": "String"
+					},
+					{
+						"name": "ResourceId",
+						"type": "String"
+					},
+					{
+						"name": "resourceLocation",
+						"type": "String"
+					},
+					{
+						"name": "location",
+						"type": "String"
+					},
+					{
+						"name": "effectivePrice",
+						"type": "String"
+					},
+					{
+						"name": "quantity",
+						"type": "String"
+					},
+					{
+						"name": "unitOfMeasure",
+						"type": "String"
+					},
+					{
+						"name": "chargeType",
+						"type": "String"
+					},
+					{
+						"name": "billingCurrency",
+						"type": "String"
+					},
+					{
+						"name": "pricingCurrency",
+						"type": "String"
+					},
+					{
+						"name": "costInBillingCurrency",
+						"type": "String"
+					},
+					{
+						"name": "costInUsd",
+						"type": "String"
+					},
+					{
+						"name": "exchangeRatePricingToBilling",
+						"type": "String"
+					},
+					{
+						"name": "exchangeRateDate",
+						"type": "String"
+					},
+					{
+						"name": "serviceInfo1",
+						"type": "String"
+					},
+					{
+						"name": "serviceInfo2",
+						"type": "String"
+					},
+					{
+						"name": "additionalInfo",
+						"type": "String"
+					},
+					{
+						"name": "tags",
+						"type": "String"
+					},
+					{
+						"name": "PayGPrice",
+						"type": "String"
+					},
+					{
+						"name": "frequency",
+						"type": "String"
+					},
+					{
+						"name": "term",
+						"type": "String"
+					},
+					{
+						"name": "reservationId",
+						"type": "String"
+					},
+					{
+						"name": "reservationName",
+						"type": "String"
+					},
+					{
+						"name": "pricingModel",
+						"type": "String"
+					},
+					{
+						"name": "unitPrice",
+						"type": "String"
+					},
+					{
+						"name": "benefitId",
+						"type": "String"
+					},
+					{
+						"name": "benefitName",
+						"type": "String"
+					},
+					{
+						"name": "provider",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CopyPipeline_dml')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy_dml",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [
+							{
+								"name": "Source",
+								"value": "costbtcontainer/daily/consipBT/"
+							},
+							{
+								"name": "Destination",
+								"value": "billing//"
+							}
+						],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"wildcardFileName": "*",
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings",
+									"skipLineCount": 0
+								}
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".txt"
+								}
+							},
+							"enableStaging": false,
+							"validateDataConsistency": false
+						},
+						"inputs": [
+							{
+								"referenceName": "SourceDataset_dml",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DestinationDataset_dml",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/SourceDataset_dml')]",
+				"[concat(variables('factoryId'), '/datasets/DestinationDataset_dml')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Trigger_dml')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "CopyPipeline_dml",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Hour",
+						"interval": 24,
+						"startTime": "2021-12-17T14:44:00Z",
+						"timeZone": "UTC"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/CopyPipeline_dml')]"
+			]
+		}
+	]
+}
