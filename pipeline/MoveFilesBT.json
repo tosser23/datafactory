@@ -134,52 +134,6 @@
 									}
 								}
 							]
-						},
-						{
-							"name": "DeleteAFile",
-							"description": "Delete a file from the source store",
-							"type": "Delete",
-							"dependsOn": [
-								{
-									"activity": "CopyAFile",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"dataset": {
-									"referenceName": "BinaryDataSource_File",
-									"type": "DatasetReference",
-									"parameters": {
-										"Container": {
-											"value": "@pipeline().parameters.SourceStore_Location",
-											"type": "Expression"
-										},
-										"Directory": {
-											"value": "@pipeline().parameters.SourceStore_Directory",
-											"type": "Expression"
-										},
-										"filename": {
-											"value": "@item().name",
-											"type": "Expression"
-										}
-									}
-								},
-								"enableLogging": false,
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true
-								}
-							}
 						}
 					]
 				}
