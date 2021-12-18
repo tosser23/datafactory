@@ -5,18 +5,6 @@
 		"factoryName": {
 			"value": "spostadati"
 		},
-		"AzureBlobStorage1_connectionString": {
-			"value": ""
-		},
-		"AzureBlobStorage2_connectionString": {
-			"value": ""
-		},
-		"dablobConsip_connectionString": {
-			"value": ""
-		},
-		"tolighthouse_connectionString": {
-			"value": ""
-		},
 		"containerUri": {
 			"value": ""
 		},
