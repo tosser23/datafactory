@@ -3,7 +3,7 @@
 	"properties": {
 		"description": "It describes the folder in the data source store.",
 		"linkedServiceName": {
-			"referenceName": "AzureBlobStorage1",
+			"referenceName": "dablobConsip",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
