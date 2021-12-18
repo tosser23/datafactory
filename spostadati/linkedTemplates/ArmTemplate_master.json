@@ -4,24 +4,32 @@
 	"parameters": {
 		"factoryName": {
 			"type": "string",
-			"metadata": "Nome Data Factory",
+			"metadata": "Data Factory name",
 			"defaultValue": "spostadati"
 		},
 		"AzureBlobStorage1_connectionString": {
 			"type": "secureString",
-			"metadata": "Stringa sicura per 'connectionString' di 'AzureBlobStorage1'"
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
 		},
 		"AzureBlobStorage2_connectionString": {
 			"type": "secureString",
-			"metadata": "Stringa sicura per 'connectionString' di 'AzureBlobStorage2'"
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage2'"
+		},
+		"dablobConsip_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'dablobConsip'"
+		},
+		"tolighthouse_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'tolighthouse'"
 		},
 		"containerUri": {
 			"type": "string",
-			"metadata": "URI dell'account di archiviazione contenente i modelli di ARM collegati"
+			"metadata": "URI to storage account containing linked ARM templates"
 		},
 		"containerSasToken": {
 			"type": "string",
-			"metadata": "Token di firma di accesso condiviso per l'account di archiviazione contenente i modelli di ARM collegati"
+			"metadata": "Sas token to storage account containing linked ARM templates"
 		}
 	},
 	"variables": {
@@ -47,6 +55,12 @@
 					},
 					"AzureBlobStorage2_connectionString": {
 						"value": "[parameters('AzureBlobStorage2_connectionString')]"
+					},
+					"dablobConsip_connectionString": {
+						"value": "[parameters('dablobConsip_connectionString')]"
+					},
+					"tolighthouse_connectionString": {
+						"value": "[parameters('tolighthouse_connectionString')]"
 					}
 				}
 			},
