@@ -1,0 +1,21 @@
+{
+	"name": "datasetLightHouse",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "versoLightHouse",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "newcontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

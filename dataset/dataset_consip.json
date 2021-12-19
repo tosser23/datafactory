@@ -1,0 +1,22 @@
+{
+	"name": "dataset_consip",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "daConsip",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "daily/consipdaily/20211201-20211231",
+				"container": "costanalysis"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
