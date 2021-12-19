@@ -167,7 +167,7 @@
 			},
 			"SourceStore_Directory": {
 				"type": "String",
-				"defaultValue": "costanalysis"
+				"defaultValue": "costanalysis/daily/consipdaily"
 			},
 			"DestinationStore_Location": {
 				"type": "String",
