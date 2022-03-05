@@ -1,0 +1,30 @@
+{
+ "sku": {
+  "name": "A0",
+  "tier": "Free"
+ },
+ "properties": {
+  "displayName": "Require a tag on resources",
+  "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/871b6d14-10aa-478d-b590-94f262ecfa99",
+  "scope": "/subscriptions/df7a42f3-2131-4e54-9f4a-0ba85a5ae465",
+  "notScopes": [],
+  "parameters": {
+   "tagName": {
+    "value": "ciao"
+   }
+  },
+  "description": "",
+  "metadata": {
+   "assignedBy": "Admin BT",
+   "parameterScopes": {},
+   "createdBy": "d6f7ccb8-faa6-41dc-85ff-2c3faf1d7c31",
+   "createdOn": "2021-08-18T08:25:31.3209651Z",
+   "updatedBy": "30d38842-2ca8-4a40-a7bf-d48d24905908",
+   "updatedOn": "2021-09-22T16:23:08.3924596Z"
+  },
+  "enforcementMode": "DoNotEnforce"
+ },
+ "id": "/subscriptions/df7a42f3-2131-4e54-9f4a-0ba85a5ae465/providers/Microsoft.Authorization/policyAssignments/ffdfc68a8ce24edb8f0c3e6c",
+ "type": "Microsoft.Authorization/policyAssignments",
+ "name": "ffdfc68a8ce24edb8f0c3e6c"
+}
